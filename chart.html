@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chart</title>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+
+<body>
+	<div id="container" style="height: 400px; width: 80%"></div>
+</body>
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function () {
+        var myChart = Highcharts.chart('container', {
+
+		    chart: {
+		        marginRight: 100
+		    },
+		    title:{
+		        text:''
+		    },
+		    subTitle:{
+		        text:''
+		    },
+		    legend: {
+		        align: 'right',
+		        verticalAlign: 'top',
+		        layout: 'vertical',
+		        x: -100,
+		        y: 0,
+		        backgroundColor: '#ffffff'
+		    },
+
+		    xAxis: {
+		        categories: ['2013', '2014', '2015', '2016', '2017', '2018'],
+		        gridLineColor: '#B6B7B5',
+		        gridLineDashStyle: 'Solid',
+		        gridLineWidth: 1,
+		    },
+
+		    yAxis: {
+		    	gridLineColor: '#B6B7B5',
+		    	gridLineDashStyle: 'Dot'
+		    },
+
+		    plotOptions: {
+		        series: {
+		            lineWidth: 5,
+		            dataLabels : {
+		            	enabled: true,
+	                    formatter : function() {
+	                    	if (this.y > 1000) {
+	                    		// return '$' + insert(this.y.toString(),', ',3);
+	                    		return "<div style='color: #ff0000'>" + '$' +  Math.floor(this.y/1000) + ',' + this.y.toString().slice(-3) + '</div>';
+	                    	}
+	                        return "<div style='color: #ff0000'>" + '$' + this.y + '</div>';
+	                    },
+	                },
+	                marker: {
+			          height: 50,
+			          width: 70,
+			          symbol: 'square'
+			        }
+		        },
+		    },
+
+		    series: [{
+		        name: 'PREMIUM',
+		        data: [100000, 200000, 250000, 198000, 189000, 234000],
+		        color: '#00AEEF',
+		    }, {
+		        name: 'LOSSES PAID',
+		        data: [0, 3594, 18772, 512792, 0, 0],
+		        color: '#EE1D23',
+		        
+		    }, {
+		        name: 'RESERVES',
+		        data: [0, 0, 0, 0, 0, 0],
+		        color: '#00A54F',
+		    }],
+		});
+    });
+</script>
+</html>
